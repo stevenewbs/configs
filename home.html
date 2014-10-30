@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<!--
+		MAin:
+		main 2E5C7F
+		main-dark 031D31
+		main-semi-dark 164061
+		main-semi-light 4E7B9D
+		main-light 89AFCD
+		
+		complement 1:
+		comp 277278
+		comp-dark 012A2E
+		comp-semi-dark 11555B
+		comp-semi-light 468E95
+		comp-light 82C2C8
+-->
+<html>
+	<head>
+		<title>Steve's Start Page</title>
+
+		
+		<style type="text/css">
+			html, body  {
+				font-family: "Liberation Sans","Dejavu Sans","Segoe UI",Tahoma;
+				height: 100%;
+				overflow: hidden;
+				background-color: #031D31;
+			}
+			section.main-content{
+				width: 96%;
+				height: 100%;
+				margin: 2%;
+				display: inline-block;
+				overflow: hidden;
+			}
+			div {
+				width: 100%;
+				vertical-align: top;
+				border-radius: 10px;
+				font-weight: bold;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				word-wrap: break-word;
+			}
+				.content {
+					display: none;
+				}
+			
+			.tabs {
+				border-radius: 5px;
+				margin: 0;
+				padding: 0;
+				
+			}
+			
+			.tabs li {
+				display: none;
+				color: #89AFCD;
+				font-size: 1.5em;
+			}	
+				.tabs li.active {
+					display: block;
+					text-align: center;
+				}
+			
+			.links li {
+				min-width: 15%;
+				text-align: center;
+				display: inline-block;
+				padding: 2%;
+				margin: 2%;
+				background-color: #468E95;
+				opacity: 0;
+				border-radius: 5px;
+				color: #82C2C8;
+				cursor: pointer;
+			}
+				.links li a {
+					color: #82C2C8;
+				}
+			a {
+				text-decoration: none;
+				cursor: pointer;
+				color: black;
+			}
+			.scrollbar{ 
+				width: 70%;
+				height: 20px;
+				margin: 5% 15%;
+				background-color: #164061;
+			}
+			.floater {
+				height: 18px;
+				margin: 1px 0px;
+				width: 5%;
+				background-color: #4E7B9D;		
+				
+			}
+			@media screen and (max-width: 1300px) {
+				div.server {
+					min-width: 22%;
+				}
+			}
+			@media screen and (max-width: 1010px) {
+				div.server {
+					min-width: 30%;
+				}
+			}
+
+			@media screen and (max-width: 935px) {
+				body {
+					font-size: 0.9em;
+				}
+
+				div.server {
+					min-width: 40%;
+				}
+			}
+			@media screen and (max-width: 650px) {
+				body {
+					font-size: 0.7em;
+				}
+
+				div.server {
+					display: block;
+					width: 50%;        
+				}
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script type="text/javascript">
+			//
+			/*
+			Shamelessly ripped this function from:
+			http://www.sitepoint.com/html5-javascript-mouse-wheel/
+			*/
+			var wheelcount = 0;
+			
+			function wheeler(e) {
+				var evt = window.event || e; //old IE 
+				var direction = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+				// 1 for up : -1 for down
+				//console.log(delta)
+				if (evt.preventDefault) {
+					evt.preventDefault();
+				}
+				else {
+					return false;
+				}
+				wheelcount += direction;
+				//console.log(wheelcount);
+				if (wheelcount == 2) {
+					wheelcount = 0;
+					prev_tab();
+				}
+				else if (wheelcount == -2) {
+					wheelcount = 0;
+					next_tab();
+				}
+			}
+			
+			function show_items() {
+				var delay = 0;
+				$(".content.active ul").children().each(function(i, elem) {
+					$(elem).delay(delay).animate({opacity: "1"}, 500);
+					delay += 100;
+				});
+			}
+			
+			function hide_items() {
+				var delay = 0;
+				$(".content.active ul").children().each(function() {
+					$(this).delay(delay).animate({opacity: "0"}, 500);
+					delay += 100;
+				});
+			}
+			
+			function next_tab() {
+				hide_items();
+				$('.content.active').removeClass("active").fadeOut('fast', function() {
+					if ( $(".tabs li.active").hasClass("last")) {
+						$(".tabs li.active").removeClass("active");
+						$(".tabs li.first").addClass("active");
+					}
+					else {
+						$(".tabs li.active").removeClass("active").next().addClass("active");
+					}
+					$('#' + $(".tabs li.active").attr('name')).addClass("active").fadeIn('fast', function() {
+						show_items()
+					});
+					scroller();					
+				});
+			}	
+			function prev_tab() {
+				hide_items();
+				$('.content.active').removeClass("active").fadeOut('fast', function() {
+					if ( $(".tabs li.active").hasClass("first")) {
+						$(".tabs li.active").removeClass("active");
+						$(".tabs li.last").addClass("active");
+					}
+					else {
+						$(".tabs li.active").removeClass("active").prev().addClass("active");
+					}
+					$('#' + $(".tabs li.active").attr('name')).addClass("active").fadeIn('slow', function() {
+						show_items();
+					});
+					scroller();
+				});
+			}	
+			
+			// max margin-left 95%
+			function scroller() {
+				var kids = $('.tabs').children();
+				var slots = kids.length;
+				var active = 1;
+				for (i = 0; i < slots; i++) {
+					if ($(kids[i]).hasClass('active')) {
+						active = i+1;
+						break;
+					}
+				}
+				console.log(slots);
+				inc = 95/(slots+1);
+				console.log(inc);
+				console.log(active);
+				var marg = 0;
+				if (active == slots) {
+					marg = 95;
+				}
+				else if (active == 1) {
+					marg = 0;
+				}
+				else {
+					marg = inc*active;
+				}				
+				console.log(marg);
+				$('.floater').animate({marginLeft: marg +'%'}, 1000);
+				
+			}
+			
+			function go(addr, elem = false) {
+				//n = $(elem).children().first().attr("href");
+				window.open(addr);
+				console.log(addr);				
+			}
+			
+			$(document).ready(function() {	
+				// handle mousewheel
+				var bod = document.getElementById("main");
+				console.log(bod);
+				if (bod.addEventListener) {
+					//IE9 chrome etc
+					bod.addEventListener("mousewheel", wheeler, false);
+					// firefox
+					bod.addEventListener("DOMMouseScroll", wheeler, false);
+				}
+				next_tab();
+				$('.links li').mouseenter(function() {
+					$(this).animate({opacity: ".75"}, 500).css("background-color", "white");
+				})
+				.mouseleave(function() {
+					$(this).css("background-color", " #468E95").animate({fontWeight: "normal", opacity: "1"}, 500);
+				});
+			});				
+			
+		</script>
+	</head>
+	<body id="main">
+		<section class="main-content" >
+			<div>
+				<ul class="tabs">
+					<li class="first active" name="Social">Social</a></li>
+					<li name="Searching">Searching</li>
+					<li class="last" name="Email">Email</li>
+				</ul>
+			</div>
+			<div class="scrollbar">
+				<div class="floater"></div>
+			</div>
+			<div id="Social" class="content social active">
+				<ul class="links">
+					<li onclick="go('https://www.facebook.com')">Facebook</a></li>
+					<li onclick="go('https://www.twitter.com')">Twitter</a></li>
+					<li onclick="go('https://www.reddit.com')">Reddit</li>
+					<li onclick="go('https://plus.google.com')">Google+</li>
+					<li onclick="go('')">-</li>
+					<li onclick="go('')">-</li>
+					<li onclick="go('')">-</li>
+					<li onclick="go('')">-</li>
+				</ul>
+			</div>
+			<div id="Searching" class="content searching">
+				<ul class="links"> 
+					<li onclick="search('https://www.google.co.uk/')">Google</li>
+					<li onclick="search('https://duckduckgo.com/')">DuckDuckGo!</li>
+					<li onclick="search('http://www.wikipedia.org/')">WikiPedia</li>
+					<li onclick="search('')">-</li>
+					<li onclick="search('')">-</li>
+					<li onclick="search('')">-</li>
+					<li onclick="search('')">-</li>
+					<li onclick="search('')">-</li>
+				</ul>
+			</div>
+			<div id="Email" class="content email">
+				<ul class="links">
+					<li onclick="go('https://zmail.sjnewbs.net')">SJNewbs.net</li>
+					<li onclick="go('https://www.outlook.com')">Outlook</li>
+					<li onclick="go('https://mail.google.com/')">GMail</li>
+					<li onclick="go('')">-</li>
+					<li onclick="go('')">-</li>
+					<li onclick="go('')">-</li>
+					<li onclick="go('')">-</li>
+					<li onclick="go('')">-</li>
+				</ul>
+			</div>
+		</section>
+	</body>
+</html>

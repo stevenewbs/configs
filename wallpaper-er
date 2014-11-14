@@ -6,7 +6,7 @@ FILE=`ls $PICDIR | sort -R | tail -1`
 #echo "$# arguments present"
 #echo "$1"
 PID=$(pgrep gnome-session)
-echo $PID
+#echo $PID
 if [ -z "$PID" ]; then
 	DISPLAY=:0 feh --bg-scale "$PICDIR/$FILE" &
 else

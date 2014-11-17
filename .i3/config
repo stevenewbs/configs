@@ -90,11 +90,11 @@ bindsym $mod+a focus parent
 #bindcode $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace termss
-bindsym $mod+2 workspace wwws
+bindsym $mod+1 workspace "1: terms"
+bindsym $mod+2 workspace "2: wwws"
 bindsym $mod+3 workspace edits
 bindsym $mod+4 workspace devs
-bindsym $mod+5 workspace 5
+bindsym $mod+5 workspace files
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
@@ -102,11 +102,11 @@ bindsym $mod+9 workspace sshs
 bindsym $mod+0 workspace vmwares
 
 # move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace terms
-bindsym $mod+Shift+quotedbl move container to workspace www
+bindsym $mod+Shift+exclam move container to workspace "1: terms"
+bindsym $mod+Shift+quotedbl move container to workspace "2: wwws"
 bindsym $mod+Shift+sterling move container to workspace edits
 bindsym $mod+Shift+dollar move container to workspace devs
-bindsym $mod+Shift+percent move container to workspace 5
+bindsym $mod+Shift+percent move container to workspace files
 bindsym $mod+Shift+asciicircum move container to workspace 6
 bindsym $mod+Shift+ampersand move container to workspace 7
 bindsym $mod+Shift+asterisk move container to workspace 8
@@ -170,5 +170,5 @@ bar {
 
 workspace vmwares output VGA1
 assign [class="Vmplayer"] vmwares
-assign [class="Firefox"] wwws
+assign [class="Firefox"] "2: wwws"
 #assign [class="Gnome-terminal"] 1

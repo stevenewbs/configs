@@ -47,10 +47,8 @@
 				}
 			
 			.tabs {
-				border-radius: 5px;
 				margin: 0;
 				padding: 0;
-				
 			}
 			
 			.tabs li {
@@ -63,13 +61,17 @@
 					text-align: center;
 				}
 			
+			.links {
+				padding: 0;
+				margin: 0;
+			}
+			
 			.links li {
-				min-width: 15%;
+				width: 100%;
 				text-align: center;
-				display: inline-block;
-				padding: 2%;
-				margin: 2%;
-				background-color: #468E95;
+				display: block;
+				padding: 10px 5px;
+				margin-left: 0;
 				opacity: 0;
 				border-radius: 5px;
 				color: #82C2C8;
@@ -85,12 +87,12 @@
 			}
 			.scrollbar{ 
 				width: 70%;
-				height: 20px;
-				margin: 5% 15%;
+				height: 18px;
+				margin: 2% 15%;
 				background-color: #164061;
 			}
 			.floater {
-				height: 18px;
+				height: 16px;
 				margin: 1px 0px;
 				width: 5%;
 				background-color: #4E7B9D;		
@@ -161,16 +163,13 @@
 			
 			function show_items() {
 				var delay = 0;
-				$(".content.active ul").children().each(function(i, elem) {
-					$(elem).delay(delay).animate({opacity: "1"}, 500);
-					delay += 100;
-				});
+				$(".content.active ul").children().animate({opacity: "1"}, 200);
 			}
 			
 			function hide_items() {
 				var delay = 0;
 				$(".content.active ul").children().each(function() {
-					$(this).delay(delay).animate({opacity: "0"}, 500);
+					$(this).delay(delay).animate({opacity: "0"}, 200);
 					delay += 100;
 				});
 			}
@@ -201,7 +200,7 @@
 					else {
 						$(".tabs li.active").removeClass("active").prev().addClass("active");
 					}
-					$('#' + $(".tabs li.active").attr('name')).addClass("active").fadeIn('slow', function() {
+					$('#' + $(".tabs li.active").attr('name')).addClass("active").fadeIn('fast', function() {
 						show_items();
 					});
 					scroller();
@@ -256,10 +255,10 @@
 				}
 				next_tab();
 				$('.links li').mouseenter(function() {
-					$(this).animate({opacity: ".75"}, 500).css("background-color", "white");
+					$(this).animate({opacity: ".65"}, 500);
 				})
 				.mouseleave(function() {
-					$(this).css("background-color", " #468E95").animate({fontWeight: "normal", opacity: "1"}, 500);
+					$(this).animate({opacity: "1"}, 500);
 				});
 			});				
 			
@@ -284,10 +283,6 @@
 					<li onclick="go('https://www.twitter.com')">Twitter</a></li>
 					<li onclick="go('https://www.reddit.com')">Reddit</li>
 					<li onclick="go('https://plus.google.com')">Google+</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
 				</ul>
 			</div>
 			<div id="Buying" class="content buying">
@@ -295,11 +290,7 @@
 					<li onclick="go('http://www.ebay.co.uk')">eBay</a></li>
 					<li onclick="go('https://www.amazon.co.uk')">Amazon</a></li>
 					<li onclick="go('https://www.teefury.com')">TeeFury</li>
-					<li onclick="go('https://www.ebuyer.com')">eBuyer</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
+					<li onclick="go('http://www.ebuyer.com')">eBuyer</li>
 				</ul>
 			</div>
 			<div id="Searching" class="content searching">
@@ -307,11 +298,7 @@
 					<li onclick="search('https://www.google.co.uk/')">Google</li>
 					<li onclick="search('https://duckduckgo.com/')">DuckDuckGo!</li>
 					<li onclick="search('http://www.wikipedia.org/')">WikiPedia</li>
-					<li onclick="search('')">-</li>
-					<li onclick="search('')">-</li>
-					<li onclick="search('')">-</li>
-					<li onclick="search('')">-</li>
-					<li onclick="search('')">-</li>
+					
 				</ul>
 			</div>
 			<div id="Email" class="content email">
@@ -319,11 +306,7 @@
 					<li onclick="go('https://zmail.sjnewbs.net')">SJNewbs.net</li>
 					<li onclick="go('https://www.outlook.com')">Outlook</li>
 					<li onclick="go('https://mail.google.com/')">GMail</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
-					<li onclick="go('')">-</li>
+					
 				</ul>
 			</div>
 		</section>

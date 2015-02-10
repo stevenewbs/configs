@@ -75,6 +75,7 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -la'
 alias genpw=/home/steve/pwds.py
+alias rd='rdesktop -g 1280x1024 '
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like

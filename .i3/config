@@ -22,16 +22,20 @@ floating_modifier $mod
 # my hacks ##
 new_window 1pixel
 new_float 1pixel
-for_window [class="[.]*"] floating enable
-for_window [class="Gnome-terminal"] floating enable
-for_window [class="Vmplayer"] floating disable
-for_window [class="Firefox"] floating disable
+#for_window [class="[.]*"] floating enable
+#for_window [class="Gnome-terminal"] floating enable
+for_window [class="rdesktop"] floating enable
+for_window [class="Digivu-manager-64"] floating enable
+#for_window [class="Vmplayer"] floating disable
+for_window [class="digivu-manager-64"] floating enable
+#for_window [class="Firefox"] floating disable
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+B exec "/home/steve/scripts/wallpaper-er.sh 1"
 popup_during_fullscreen smart
 
 # start a terminal
 bindsym $mod+Return exec gnome-terminal
+bindsym $mod+p exec pcmanfm
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -90,8 +94,8 @@ bindsym $mod+a focus parent
 #bindcode $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace "1: terms"
-bindsym $mod+2 workspace "2: wwws"
+bindsym $mod+1 workspace terms
+bindsym $mod+2 workspace wwws
 bindsym $mod+3 workspace edits
 bindsym $mod+4 workspace devs
 bindsym $mod+5 workspace files
@@ -102,8 +106,8 @@ bindsym $mod+9 workspace sshs
 bindsym $mod+0 workspace vmwares
 
 # move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace "1: terms"
-bindsym $mod+Shift+quotedbl move container to workspace "2: wwws"
+bindsym $mod+Shift+exclam move container to workspace terms
+bindsym $mod+Shift+quotedbl move container to workspace wwws
 bindsym $mod+Shift+sterling move container to workspace edits
 bindsym $mod+Shift+dollar move container to workspace devs
 bindsym $mod+Shift+percent move container to workspace files
@@ -162,7 +166,7 @@ bar {
 	status_command i3status -c ~/.i3/.i3status.conf
 	position top
 	mode dock
-	strip_workspace_numbers yes
+	#strip_workspace_numbers yes
 	#font -misc-fixed-medium-r-normal-*-15-100-----iso10646-1
 	font pango:Ubuntu 14px
 	tray_output none
@@ -170,5 +174,6 @@ bar {
 
 workspace vmwares output VGA1
 assign [class="Vmplayer"] vmwares
-assign [class="Firefox"] "2: wwws"
+assign [class="Firefox"] wwws
+assign [class="Gnome-terminal"] terms
 #assign [class="Gnome-terminal"] 1

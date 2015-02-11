@@ -10,7 +10,7 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
-exec --no-startup-id "/home/steve/scripts/wallpaper-er"
+exec --no-startup-id "$HOME/scripts/wallpaper-er"
 
 # font for window titles. ISO 10646 = Unicode
 font pango: Ubuntu 14px
@@ -30,7 +30,7 @@ for_window [class="Digivu-manager-64"] floating enable
 for_window [class="digivu-manager-64"] floating enable
 #for_window [class="Firefox"] floating disable
 bindsym $mod+Tab workspace next
-bindsym $mod+Shift+B exec "/home/steve/scripts/wallpaper-er.sh 1"
+bindsym $mod+Shift+B exec "$HOME/scripts/wallpaper-er"
 popup_during_fullscreen smart
 
 # start a terminal
@@ -175,5 +175,5 @@ bar {
 workspace vmwares output VGA1
 assign [class="Vmplayer"] vmwares
 assign [class="Firefox"] wwws
-assign [class="Gnome-terminal"] terms
+#assign [class="Gnome-terminal"] terms
 #assign [class="Gnome-terminal"] 1
